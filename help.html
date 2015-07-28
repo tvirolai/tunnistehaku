@@ -1,38 +1,24 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+
 <html>
   <head>
     <meta charset="UTF-8">
     <title>Haku Melindan tietuetunnuksella tai formaatista MARC21-kentällä</title>
-    <style>
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-      #teksti {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 50%;
-      } 
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
 
   <body>
-    <p>Tällä selainlaajennoksella voit tehdä tunnistenumerolla hakuja
+
+    <p>Tällä selainlaajennoksella voit tehdä tunnistenumerolla hakuja</p>
+
       <ol>
         <li>Melinda-tietokannasta (tietuenumerohaku)</li>
         <li>MARC 21 -formaatin suomennoksesta (haku kenttänumerolla)</li>
         <li>MARC 21 -formaatin alkutekstistä Kongressin kirjaston sivuilta (haku kenttänumerolla)</li>
-        <li>MARC 21 -formaatin sovellusohjeesta (haku kenttänumerolla)</li>
+        <li>MARC 21 -formaatin sovellusohjeesta Melinda-kirjastoille (haku kenttänumerolla)</li>
       </ol>
-      Melindan tietuetunnisteita voit syöttää hakukenttään myös useamman pilkulla erotettuna, jolloin jokainen tietue avautuu selaimessa omaan välilehteensä.
-    </p>
+
+      <p>Melindan tietuetunnisteita voit syöttää hakukenttään myös useamman pilkulla erotettuna, jolloin jokainen tietue avautuu selaimessa omaan välilehteensä.</p>
+   
   </body>
 </html>
-

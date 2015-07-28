@@ -7,7 +7,7 @@ function parseMelindaURL(query) {
 		idArray.push(query.trim());
 	}
 	for (var i = 0; i < idArray.length; i++) {
-		url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i];
+		url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
 		urlArray.push(url);
 	}
 	return urlArray;
