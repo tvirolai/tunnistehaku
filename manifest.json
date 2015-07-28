@@ -10,6 +10,6 @@
     "default_popup": "redirect.html"
   },
   "permissions": [
-    "tabs"
-  ]
+    "tabs"],
+  "author": "Tuomo Virolainen"
 }

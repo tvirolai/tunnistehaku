@@ -1,13 +1,16 @@
-function parseURL(query) {
-	var input = query;
-	if (input.length === 3) {
-		url = parseMARCUrl(query);
-	} else if (input.length > 5) {
-		url = 'http://melinda.kansalliskirjasto.fi/byid/' + query;
-	} else {
-		url = "Unknown url";
+function parseMelindaURL(query) {
+	var idArray = [];
+	var urlArray = [];
+	if (query.indexOf(',') > -1 ) {
+		idArray = query.split(',');
+	} else { 
+		idArray.push(query.trim());
 	}
-  return url;
+	for (var i = 0; i < idArray.length; i++) {
+		url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i];
+		urlArray.push(url);
+	}
+	return urlArray;
 }
 
 function parseMARCUrl(field) {
@@ -20,8 +23,6 @@ function parseMARCUrl(field) {
 		return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/007.htm';
 	} else if (fieldNumber === 8) {
 		return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/008.htm';
-	} else if (fieldNumber >= 10 && fieldNumber <= 49) {
-		return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/01X-04X.htm#' + field;
 	} else if (fieldNumber >= 10 && fieldNumber <= 49) {
 		return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/01X-04X.htm#' + field;
 	} else if (fieldNumber >= 50 && fieldNumber < 90) {
@@ -52,9 +53,59 @@ function parseMARCUrl(field) {
 		return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/841-88X.htm#' + field;
 	} else if (fieldNumber >= 900) {
 		return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/9XX.htm#' + field;
-	}	else {
+	} else {
 		alert('Unrecognized value.');
 	}
+}
+
+function parseLOCMARCUrl(field) {
+	return 'http://www.loc.gov/marc/bibliographic/bd' + field + '.html';
+}
+
+function parseSovellusohjeUrl(field) {
+	var fieldNumber = Number(field);
+		if (fieldNumber === 0) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28195289';
+	} else if (fieldNumber > 0 && fieldNumber <= 6) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28195301';
+	} else if (fieldNumber === 7) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28195745';
+	} else if (fieldNumber === 8) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28195750';
+	} else if (fieldNumber >= 10 && fieldNumber <= 49) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28195782';
+	} else if (fieldNumber >= 50 && fieldNumber < 90) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28201092';
+	} else if (fieldNumber >= 100 && fieldNumber <= 130) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28201245';
+	} else if (fieldNumber >= 210 && fieldNumber < 250) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28201255';
+	} else if (fieldNumber >= 250 && fieldNumber <= 270) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28201803';
+	} else if (fieldNumber >= 300 && fieldNumber < 400) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28201880';
+	} else if (fieldNumber >= 400 && fieldNumber < 500) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202275';
+	} else if (fieldNumber >= 500 && fieldNumber < 540) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202285';
+	} else if (fieldNumber >= 530 && fieldNumber < 600) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202292';
+	} else if (fieldNumber >= 600 && fieldNumber < 700) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202299';
+	} else if (fieldNumber >= 700 && fieldNumber < 760) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202301';
+	} else if (fieldNumber >= 760 && fieldNumber < 790) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202303';
+	} else if (fieldNumber >= 800 && fieldNumber <= 830) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202305';
+	} else if (fieldNumber >= 841 && fieldNumber < 890) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28202307';
+	} else if (fieldNumber >= 900) {
+		return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28203469';
+	} else {
+		alert('Unrecognized value.');
+	}
+
 }
 
 function redirect(parsedUrl) {
@@ -62,9 +113,20 @@ function redirect(parsedUrl) {
 }
 
 function processForm() {
+	var urls = [];
 	var queryString = document.getElementById('querystring').value;
-	var url = parseURL(queryString);
-	redirect(url);
+	if (document.getElementById('melinda').checked) {
+		urls = parseMelindaURL(queryString);
+	} else if (document.getElementById('marc21').checked) {
+		urls.push(parseMARCUrl(queryString));
+	} else if (document.getElementById('marc21loc').checked) {
+		urls.push(parseLOCMARCUrl(queryString));
+	} else if (document.getElementById('sovellusohje').checked) {
+		urls.push(parseSovellusohjeUrl(queryString));
+	}
+	for (var i = 0; i < urls.length; i++) {
+		redirect(urls[i]);
+	}
 }
 
 document.getElementById("sendButton").addEventListener("click", processForm);

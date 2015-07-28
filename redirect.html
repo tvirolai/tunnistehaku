@@ -6,36 +6,44 @@
  -->
 <html>
   <head>
+    <meta charset="UTF-8">
     <title>Haku Melindan tietuetunnuksella tai formaatista MARC21-kentällä</title>
     <style>
-      body {
+      #teksti {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
+        font-size: 50%;
+        text-align: right;
       }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
+      a {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        text-align: right;
+        font-size: 100%;
+        color: green;
+        text-decoration: none;
       }
     </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
   </head>
+
   <body>
     <div id="form">
-      <form>ID:<br>
-        <input type="text" id="querystring">
+      <form id="select">
+      <input type="text" id="querystring">
+      <br /><br />
+        <span class="teksti">
+        <input type="radio" name="select" id="melinda" checked>Melinda
+        <br />
+        <input type="radio" name="select" id="marc21">MARC 21
+        <br />
+        <input type="radio" name="select" id="marc21loc">MARC 21 Full (LOC)
+        <br />
+        <input type="radio" name="select" id="sovellusohje">MARC 21 sovellusohje
+      </span>
       </form>
-    <button id="sendButton" style="width:100px; height:50px;">Hae</button>
+      <br />
+    <button id="sendButton" style="width:150px; height:30px;">Hae</button>
+    <br /><br />
+    <a href="help.html">Ohje</a>
     </div>
     <script src="query.js"></script>
   </body>
 </html>
-
