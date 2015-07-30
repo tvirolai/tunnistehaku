@@ -1,15 +1,12 @@
 # Tunnistehaku
 Tällä selainlaajennoksella voit tehdä tunnistenumerolla hakuja:
 
-1. Melinda-tietokannasta (tietuenumerohaku)
-2. MARC 21 -formaatin suomennoksesta (haku kenttänumerolla)
-3. MARC 21 -formaatin alkutekstistä Kongressin kirjaston sivuilta (haku kenttänumerolla)
-4. MARC 21 -formaatin sovellusohjeesta Melinda-kirjastoille (haku kenttänumerolla)
+Pääasiassa Melinda-kirjastojen henkilökunnalle suunnattu selainlaajennos, jolla voi helposti ja nopeasti hakea tietueita Melindan näyttöluettelosta tietuenumeron perusteella. Tietueita voi hakea myös useita samalla haulla. Tällöin haettavien tietueiden tunnisteet syötetään hakukenttään pilkulla erotettuna.
 
-Melindan tietuetunnisteita voit syöttää hakukenttään myös useamman pilkulla erotettuna, jolloin jokainen tietue avautuu selaimessa omaan välilehteensä.
+Laajennoksella voi hakea tehdä hakuja myös MARC 21 -formaatin suomennoksesta, MARC 21 -formaatin englanninkielisestä kokotekstistä Kongressin kirjaston sivuilta tai MARC 21 BIB -sovellusohjeesta Melinda-kirjastoille.
 
 Laajennoksen voi asentaa Chrome Web Store -portaalin kautta: https://chrome.google.com/webstore/detail/tunnistehaku/oehlgnbpoibkcnhafbcpcikifcpgngmf
 
 _______________
 
-A Chrome addon designed mainly for use in Finnish libraries for querying the OPAC of the common catalogue Melinda as well as MARC 21 format text by id.
+A Chrome addon designed mainly for use in Finnish libraries for querying the OPAC of the Union Catalogue Melinda by record ID. It is also possible to search for definitions of MARC 21 format fields by code.
