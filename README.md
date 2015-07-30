@@ -1,5 +1,4 @@
 # Tunnistehaku
-Tällä selainlaajennoksella voit tehdä tunnistenumerolla hakuja:
 
 Pääasiassa Melinda-kirjastojen henkilökunnalle suunnattu selainlaajennos, jolla voi helposti ja nopeasti hakea tietueita Melindan näyttöluettelosta tietuenumeron perusteella. Tietueita voi hakea myös useita samalla haulla. Tällöin haettavien tietueiden tunnisteet syötetään hakukenttään pilkulla erotettuna.
 
