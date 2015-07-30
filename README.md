@@ -8,6 +8,8 @@ Tällä selainlaajennoksella voit tehdä tunnistenumerolla hakuja:
 
 Melindan tietuetunnisteita voit syöttää hakukenttään myös useamman pilkulla erotettuna, jolloin jokainen tietue avautuu selaimessa omaan välilehteensä.
 
+Laajennoksen voi asentaa Chrome Web Store -portaalin kautta: https://chrome.google.com/webstore/detail/tunnistehaku/oehlgnbpoibkcnhafbcpcikifcpgngmf
+
 _______________
 
 A Chrome addon designed mainly for use in Finnish libraries for querying the OPAC of the common catalogue Melinda as well as MARC 21 format text by id.
