@@ -1,9 +1,14 @@
 function parseMelindaURL(query) {
 	var idArray = [];
 	var urlArray = [];
+	query = query.trim();
+	
+	// Melinda-idt voi syöttää pilkulla tai välilyönnillä erotettuna
 	if (query.indexOf(',') > -1 ) {
 		idArray = query.split(',');
-	} else { 
+	} else if (query.indexOf(' ') > -1 ) {
+		idArray = query.split(' ');
+	} else {
 		idArray.push(query.trim());
 	}
 	for (var i = 0; i < idArray.length; i++) {
@@ -129,4 +134,14 @@ function processForm() {
 	}
 }
 
-document.getElementById("sendButton").addEventListener("click", processForm);
+// Lomakkeen lähetys painamalla hae-nappia
+
+document.getElementById('sendButton').addEventListener('click', processForm);
+
+// Lomakkeen lähetys painamalla enteriä
+
+querystring.addEventListener('keypress', function(event) {
+	if (event.keyCode == 13) {
+		processForm();
+	}
+});
