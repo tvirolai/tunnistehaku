@@ -1,6 +1,9 @@
+'use strict';
+
 function parseMelindaURL(query) {
 	var idArray = [];
 	var urlArray = [];
+	var url;
 	query = query.trim();
 	
 	// Melinda-idt voi syöttää pilkulla tai välilyönnillä erotettuna
@@ -110,7 +113,6 @@ function parseSovellusohjeUrl(field) {
 	} else {
 		alert('Unrecognized value.');
 	}
-
 }
 
 function redirect(parsedUrl) {
@@ -140,8 +142,22 @@ document.getElementById('sendButton').addEventListener('click', processForm);
 
 // Lomakkeen lähetys painamalla enteriä
 
-querystring.addEventListener('keypress', function(event) {
+// Enterin painaminen kun hakulaatikko on valittu
+
+document.getElementById('querystring').addEventListener('keypress', function(event) {
 	if (event.keyCode == 13) {
 		processForm();
 	}
+});
+
+// Enterin painaminen kohdistusvalintojen kohdalla (esim. jos ensin täytetään hakuehto ja sitten kohdistus)
+
+var elements = document.getElementsByClassName('teksti');
+
+[].forEach.call(elements, function(el) {
+    el.addEventListener('keypress', function(event) {
+			if (event.keyCode == 13) {
+				processForm();
+			}
+	});
 });
