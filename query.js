@@ -12,17 +12,31 @@ function parseMelindaURL(query) {
   } else if (query.indexOf(' ') > -1 ) {
     idArray = query.split(' ');
   } else {
-    idArray.push(query.trim());
+    idArray.push(query);
   }
   for (var i = 0; i < idArray.length; i++) {
-    url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
-    urlArray.push(url);
+    if (checkInput(idArray[i])) {
+      url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
+      urlArray.push(url);
+    }
   }
   return urlArray;
 }
 
+// Parsitaan kenttäkoodit kolminumeroisiksi
+function parseMARCField(field) {
+  if (field.length == 1) {
+    field = '00' + field;
+  }
+  if (field.length == 2) {
+    field = '0' + field;
+  }
+  return field;
+}
+
 function parseMARCUrl(field) {
   var fieldNumber = Number(field);
+  field = parseMARCField(field);
   if (fieldNumber === 0) {
     return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/000.htm';
   } else if (fieldNumber > 0 && fieldNumber <= 6) {
@@ -62,12 +76,16 @@ function parseMARCUrl(field) {
   } else if (fieldNumber >= 900) {
     return 'http://www.kansalliskirjasto.fi/extra/marc21/bib/9XX.htm#' + field;
   } else {
-    alert('Unrecognized value.');
+    unrecognizedValue();
   }
 }
 
 function parseLOCMARCUrl(field) {
-  return 'http://www.loc.gov/marc/bibliographic/bd' + field + '.html';
+  if (checkInput(field)) {
+    return 'http://www.loc.gov/marc/bibliographic/bd' + field + '.html';
+  } else {
+    unrecognizedValue();
+  }
 }
 
 function parseSovellusohjeUrl(field) {
@@ -111,12 +129,27 @@ function parseSovellusohjeUrl(field) {
   } else if (fieldNumber >= 900) {
     return 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=28203469';
   } else {
-    alert('Unrecognized value.');
+    unrecognizedValue();
   }
 }
 
 function redirect(parsedUrl) {
-  chrome.tabs.create({url: parsedUrl});
+  // Avataan välilehtiä vain, jos syötteenä saadaan oikea URL
+  if (parsedUrl.indexOf('http') > -1) {
+    chrome.tabs.create({url: parsedUrl});
+  }
+}
+
+function unrecognizedValue() {
+  alert('Virheellinen syöte.');
+}
+
+function checkInput(input) {
+  if (isNaN(input)) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 function processForm() {
