@@ -7,7 +7,7 @@
     var urlArray = [];
     var url;
     query = query.trim();
-    
+
     // Melinda-idt voi syöttää pilkulla tai välilyönnillä erotettuna
     if (query.indexOf(',') > -1 ) {
       idArray = query.split(',');
@@ -17,7 +17,7 @@
       idArray.push(query);
     }
     for (var i = 0; i < idArray.length; i++) {
-      if (checkInput(idArray[i])) {
+      if (containsNumbers(idArray[i]) && !containsAlphebeticalCharacters(idArray[i])) {
         url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
         urlArray.push(url);
       }
@@ -83,7 +83,7 @@
   }
 
   function parseLOCMARCUrl(field) {
-    if (checkInput(field)) {
+    if (containsNumbers(field)) {
       return 'http://www.loc.gov/marc/bibliographic/bd' + field + '.html';
     } else {
       unrecognizedValue();
@@ -146,12 +146,16 @@
     alert('Virheellinen syöte.');
   }
 
-  function checkInput(input) {
-    if (isNaN(input)) {
-      return false;
-    } else {
+  function containsNumbers(input) {
+    if (/[0-9]/i.test(input)) {
       return true;
+    } else {
+      return false;
     }
+  }
+
+  function containsAlphebeticalCharacters(input) {
+    return /[a-zäöå]/i.test(input);
   }
 
   function processForm() {
@@ -196,4 +200,4 @@
         }
     });
   });
-})();
+}());
