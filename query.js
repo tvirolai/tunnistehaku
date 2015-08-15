@@ -8,21 +8,21 @@
     var url;
     query = query.trim();
 
-      // Melinda-idt voi syöttää pilkulla tai välilyönnillä erotettuna
-      if (query.indexOf(',') > -1 ) {
-        idArray = query.split(',');
-      } else if (query.indexOf(' ') > -1 ) {
-        idArray = query.split(' ');
-      } else {
-        idArray.push(query);
+    // Melinda-idt voi syöttää pilkulla tai välilyönnillä erotettuna
+    if (query.indexOf(',') > -1 ) {
+      idArray = query.split(',');
+    } else if (query.indexOf(' ') > -1 ) {
+      idArray = query.split(' ');
+    } else {
+      idArray.push(query);
+    }
+    for (var i = 0; i < idArray.length; i++) {
+      if (containsNumbers(idArray[i]) && !containsAlphebeticalCharacters(idArray[i])) {
+        url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
+        urlArray.push(url);
       }
-      for (var i = 0; i < idArray.length; i++) {
-        if (containsNumbers(idArray[i]) && !containsAlphebeticalCharacters(idArray[i])) {
-          url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
-          urlArray.push(url);
-        }
-      }
-      return urlArray;
+    }
+    return urlArray;
   }
 
   // Parsitaan kenttäkoodit kolminumeroisiksi
