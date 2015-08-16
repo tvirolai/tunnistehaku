@@ -17,7 +17,7 @@
       idArray.push(query);
     }
     for (var i = 0; i < idArray.length; i++) {
-      if (containsNumbers(idArray[i]) && !containsAlphebeticalCharacters(idArray[i])) {
+      if (containsNumbers(idArray[i]) && !containsAlphabeticalCharacters(idArray[i])) {
         url = 'http://melinda.kansalliskirjasto.fi/byid/' + idArray[i].trim();
         urlArray.push(url);
       }
@@ -83,7 +83,7 @@
   }
 
   function parseLOCMARCUrl(field) {
-    if (containsNumbers(field) && !containsAlphebeticalCharacters(field)) {
+    if (containsNumbers(field) && !containsAlphabeticalCharacters(field)) {
       return 'http://www.loc.gov/marc/bibliographic/bd' + field + '.html';
     } else {
       unrecognizedValue();
@@ -147,28 +147,24 @@
   }
 
   function containsNumbers(input) {
-    if (/[0-9]/i.test(input)) {
-      return true;
-    } else {
-      return false;
-    }
+    return /[0-9]/.test(input);
   }
 
-  function containsAlphebeticalCharacters(input) {
+  function containsAlphabeticalCharacters(input) {
     return /[a-zäöå]/i.test(input);
   }
 
   function processForm() {
     var urls = [];
-    var queryString = document.getElementById('querystring').value;
+    var submittedQuery = document.getElementById('querystring').value;
     if (document.getElementById('melinda').checked) {
-      urls = parseMelindaURL(queryString);
+      urls = parseMelindaURL(submittedQuery);
     } else if (document.getElementById('marc21').checked) {
-      urls.push(parseMARCUrl(queryString));
+      urls.push(parseMARCUrl(submittedQuery));
     } else if (document.getElementById('marc21loc').checked) {
-      urls.push(parseLOCMARCUrl(queryString));
+      urls.push(parseLOCMARCUrl(submittedQuery));
     } else if (document.getElementById('sovellusohje').checked) {
-      urls.push(parseSovellusohjeUrl(queryString));
+      urls.push(parseSovellusohjeUrl(submittedQuery));
     }
     for (var i = 0; i < urls.length; i++) {
       redirect(urls[i]);
