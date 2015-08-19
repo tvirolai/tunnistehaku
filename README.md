@@ -1,6 +1,6 @@
 # Tunnistehaku
 
-Pääasiassa Melinda-kirjastojen henkilökunnalle suunnattu selainlaajennos, jolla voi helposti ja nopeasti hakea tietueita Melindan näyttöluettelosta tietuenumeron perusteella. Tietueita voi hakea myös useita samalla haulla. Tällöin haettavien tietueiden tunnisteet syötetään hakukenttään pilkulla tai välilyönnillä erotettuna.
+Pääasiassa Melinda-kirjastojen henkilökunnalle suunnattu laajennos Google Chrome -selaimeen, jolla voi helposti ja nopeasti hakea tietueita Melindan näyttöluettelosta tietuenumeron perusteella. Tietueita voi hakea myös useita samalla haulla. Tällöin haettavien tietueiden tunnisteet syötetään hakukenttään pilkulla tai välilyönnillä erotettuna.
 
 Laajennoksella voi hakea tehdä hakuja myös MARC 21 -formaatin suomennoksesta, MARC 21 -formaatin englanninkielisestä kokotekstistä Kongressin kirjaston sivuilta tai MARC 21 BIB -sovellusohjeesta Melinda-kirjastoille.
 
