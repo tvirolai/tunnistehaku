@@ -2,14 +2,14 @@
   "manifest_version": 2,
 
   "name": "Tunnistehaku",
-  "description": "Haku Melindasta tietuetunnuksella tai MARC21-formaatista kenttäkoodilla",
-  "version": "0.6.1",
+  "description": "Haku Melindasta tietuetunnuksella tai MARC21-formaatista / sovellusohjeesta kenttäkoodilla",
+  "version": "0.6.2",
 
   "browser_action": {
     "default_icon": "book.png",
     "default_popup": "redirect.html"
   },
-  "permissions": [
-    "tabs"],
+
+  "permissions": ["tabs"],
   "author": "Tuomo Virolainen"
 }
