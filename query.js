@@ -61,6 +61,7 @@
   }
 
   function parseLOCMARCUrl(field) {
+    if (Number(field) < 100) { field = parseMARCField(field); }
     return 'http://www.loc.gov/marc/bibliographic/bd' + field + '.html';
   }
 
