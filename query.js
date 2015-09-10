@@ -37,7 +37,7 @@
 
   function parseMARC21Url(field, type) {
     var fieldNumber = Number(field);
-    if (fieldNumber >= 100) { field = parseMARCField(field); }
+    if (fieldNumber < 100) { field = parseMARCField(field); }
     if (fieldNumber >= 590 && fieldNumber <= 599) { field = '59x'; }
     var wikiRoot = 'https://wiki.helsinki.fi/pages/viewpage.action?pageId=';
     var marc21Root = 'http://www.kansalliskirjasto.fi/extra/marc21/bib/';
