@@ -97,7 +97,7 @@
       {'formatField': '250-270', 'firstCode': 250, 'lastCode': 270, 'pageId': '28201803', 'anchor': '#id-10.Julkaisu-jajakelutietojenjne.kentät(250-270)-'},
       {'formatField': '3XX', 'firstCode': 300, 'lastCode': 399, 'pageId': '28201880', 'anchor': '#id-11.Fyysisenkuvailunjne.kentät(3XX)-'},
       {'formatField': '4XX', 'firstCode': 400, 'lastCode': 499, 'pageId': '28202275', 'anchor': false},
-      {'formatField': '50x-53X', 'firstCode': 500, 'lastCode': 535, 'pageId': '28202285', 'anchor': '#id-13.Huomautuskentät,osa1(50X-53X)-'},
+      {'formatField': '50X-53X', 'firstCode': 500, 'lastCode': 535, 'pageId': '28202285', 'anchor': '#id-13.Huomautuskentät,osa1(50X-53X)-'},
       {'formatField': '53X-58X', 'firstCode': 536, 'lastCode': 599, 'pageId': '28202292', 'anchor': '#id-14.Huomautuskentät,osa2(53X-59X)-'},
       {'formatField': '6XX', 'firstCode': 600, 'lastCode': 699, 'pageId': '28202299', 'anchor': '#id-15.Asiasanakentät(6XX)-'},
       {'formatField': '70X-75X', 'firstCode': 700, 'lastCode': 759, 'pageId': '28202301', 'anchor': '#id-16.Lisäkirjauskentät(70X-75X)-'},
