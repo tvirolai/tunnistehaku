@@ -1,3 +1,7 @@
+body {
+  min-width: 200px;
+}
+
 #teksti {
   font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
   font-size: 50%;
