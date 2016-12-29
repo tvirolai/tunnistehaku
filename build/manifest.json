@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Tunnistehaku",
-  "description": "Haku Melindasta tietuetunnuksella tai MARC21-formaatista / sovellusohjeesta kenttäkoodilla",
-  "version": "0.6.6",
+  "description": "Haku Melindasta tai Finna-kirjastoista tietuetunnuksella tai MARC21-formaatista / sovellusohjeesta kenttäkoodilla",
+  "version": "1.0.0",
 
   "browser_action": {
     "default_icon": "book.png",
