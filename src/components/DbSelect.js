@@ -14,4 +14,4 @@ function DbSelect(props) {
   );
 }
 
-export default DbSelect;
+export default DbSelect
