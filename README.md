@@ -6,7 +6,7 @@ Laajennoksella voi hakea tehdä hakuja myös MARC 21 -formaatin suomennoksesta, 
 
 Laajennoksen voi asentaa Chrome Web Store -portaalin kautta: https://chrome.google.com/webstore/detail/tunnistehaku/oehlgnbpoibkcnhafbcpcikifcpgngmf
 
-_______________
+## Description
 
 A Chrome addon designed mainly for use in Finnish libraries for querying the OPAC of the Union Catalogue Melinda by record ID. It is also possible to search for definitions of MARC 21 format fields by code.
 
