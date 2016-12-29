@@ -76,7 +76,7 @@ class Form extends React.Component {
 
   render() {
     const selection = (this.state.ohjeet) ? <DbSelect title="Haku ohjeista" content={instructions} changeFunction={this.changeSelection} /> : <DbSelect title="Haku tietokannasta" content={databases} changeFunction={this.changeSelection} />;
-    const textPlaceHolder = (this.state.ohjeet) ? "Syötä MARC 21 kenttäkoodi" : "Syötä tietuenumero";
+    const textPlaceHolder = (this.state.ohjeet) ? "Syötä MARC 21 kenttäkoodi" : "Syötä tietuenumero(t)";
     const textFormatting = (this.state.ohjeet) ? "glyphicon glyphicon-console form-control-feedback" : "glyphicon glyphicon-book form-control-feedback";
     return (
       <div className="container">

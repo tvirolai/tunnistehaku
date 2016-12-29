@@ -68,7 +68,7 @@ function getFinnaData(database) {
   const data = {
     "Aalto-yliopisto": {"tag": "aalto", "db": "alli"},
     "Helka": {"tag": "helka", "db": "helka"},
-    "Hamk": {"tag": "hamk", "db": "vanaicat"},
+    "HAMK": {"tag": "hamk", "db": "vanaicat"},
     "Itä-Suomen yliopisto": {"tag": "uef", "db": "josku"},
     "Jyväskylän yliopisto": {"tag": "jyu", "db": "jykdok"},
     "Jyväskylän ammattikorkeakoulu": {"tag": "janet", "db": "janet"},

@@ -1,14 +1,14 @@
 {
-  "name": "tunnisteet",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "Tunnistehaku",
+  "version": "1.0.2",
+  "description": "A Chrome addon for Finnish scientific libraries",
+  "main": "./build/query.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tuomo Virolainen <tuomo.virolainen@helsinki.fi>",
+  "license": "AGPL-3.0",
   "dependencies": {
     "immutable": "^3.8.1",
     "lodash": "^4.16.4",
