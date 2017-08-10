@@ -4,13 +4,12 @@
   "description": "A Chrome addon for Finnish scientific libraries",
   "main": "./build/query.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack"
   },
   "keywords": [],
   "author": "Tuomo Virolainen <tuomo.virolainen@helsinki.fi>",
   "license": "AGPL-3.0",
   "dependencies": {
-    "immutable": "^3.8.1",
     "lodash": "^4.16.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"

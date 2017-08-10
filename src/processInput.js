@@ -1,6 +1,5 @@
 "use strict";
 
-import Immutable from "immutable";
 import * as _ from "lodash";
 
 function parseMARC21Url(field, type, data) {
@@ -16,9 +15,8 @@ function parseMARC21Url(field, type, data) {
 }
 
 function getUrlData() {
-  return Immutable.fromJS(
-    [
-      {"formatField": "000", "firstCode": 0, "lastCode": 0, "pageId": "28195289", "rdaPageId": "51282124", "anchor": false},
+  return [
+	  {"formatField": "000", "firstCode": 0, "lastCode": 0, "pageId": "28195289", "rdaPageId": "51282124", "anchor": false},
       {"formatField": "001-006", "firstCode": 1, "lastCode": 6, "pageId": "28195301", "rdaPageId": "51282125", "anchor": false},
       {"formatField": "007", "firstCode": 7, "lastCode": 7, "pageId": "28195745", "rdaPageId": "51282132", "anchor": false},
       {"formatField": "008", "firstCode": 8, "lastCode": 8, "pageId": "28195750", "rdaPageId": "51282049", "anchor": false},
@@ -37,7 +35,7 @@ function getUrlData() {
       {"formatField": "80X-830", "firstCode": 800, "lastCode": 830, "pageId": "28202305", "rdaPageId": "51282135", "anchor": "#id-18.Sarjalisäkirjauskentät(80X-830)-"},
       {"formatField": "841-88X", "firstCode": 841, "lastCode": 899, "pageId": "28202307", "rdaPageId": "51282070", "anchor": "#id-19.Varasto-jasijainti-ym.tietojenkentät(841-88X)-"},
       {"formatField": "9XX", "firstCode": 900, "lastCode": 999, "pageId": "28203469", "rdaPageId": "51282136", "anchor": "#id-20.Suomalaisetkentät(9XX)-"}
-  ]);
+  ];
 }
 
 function processInput(data) {
@@ -55,9 +53,11 @@ function processInput(data) {
     } else {
       if (data.selection === "Melinda") {
         parseMelindaURL(data.value).map(redirect);
-      } else {
+      } else if (data.selection === "Fennica") {
+        parseFennicaURL(data.value).map(redirect);
+	  } else {
         parseFinnaURL(data.selection, data.value).map(redirect);
-      }
+	  }
     }
   } else {
     unrecognizedValue();
@@ -103,13 +103,15 @@ function getFinnaData(database) {
   return data[database];
 }
 
-const splitInput = (query) => Immutable.fromJS(query.indexOf(",") > -1 ? query.trim().split(",") : query.trim().split(" "))
+const splitInput = (query) => query.indexOf(",") > -1 ? query.trim().split(",") : query.trim().split(" ");
 
 const parseMelindaURL = (query) => splitInput(query).map(id => `http://melinda.kansalliskirjasto.fi/byid/${id.trim()}`);
 
+const parseFennicaURL = (query) => splitInput(query).map(id => `http://fennica.linneanet.fi/vwebv/holdingsInfo?bibId=${id.trim()}`);
+
 function parseFinnaURL(database, query) {
   const dbdata = getFinnaData(database);
-  return splitInput(query).map(id => `https://${dbdata.tag}.finna.fi/Record/${dbdata.db}.${id.trim()}`); 
+  return splitInput(query).map(id => `https://${dbdata.tag}.finna.fi/Record/${dbdata.db}.${id.trim()}`);
 }
 
 const parseLOCMARCUrl = (field) => `http://www.loc.gov/marc/bibliographic/bd${parseMARCField(field)}.html`;
