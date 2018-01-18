@@ -1,16 +1,14 @@
 "use strict";
 
-import * as _ from "lodash";
-
 function parseMARC21Url(field, type, data) {
   field = (Number(field) >= 590 && Number(field) <= 599) ? "59x" : parseMARCField(field);
-  const urlInfo = data.filter(line => Number(field) >= line.get("firstCode") && Number(field) <= line.get("lastCode")).get(0);
+  const urlInfo = data.filter(line => Number(field) >= line.firstCode && Number(field) <= line.lastCode).pop();
   if (type === "marc21") {
-    return "http://www.kansalliskirjasto.fi/extra/marc21/bib/"+ urlInfo.get("formatField") + ".htm#" + field;
+    return "http://www.kansalliskirjasto.fi/extra/marc21/bib/"+ urlInfo.formatField + ".htm#" + field;
   } else if (type === "sovellusohjeisbd") {
-    return "https://wiki.helsinki.fi/pages/viewpage.action?pageId=" + urlInfo.get("pageId") + (urlInfo.get("anchor") ? urlInfo.get("anchor") + field : "");
+    return "https://wiki.helsinki.fi/pages/viewpage.action?pageId=" + urlInfo.pageId + (urlInfo.anchor ? urlInfo.anchor + field : "");
   } else if (type === "sovellusohjerda") {
-    return "https://www.kiwi.fi/pages/viewpage.action?pageId=" + urlInfo.get("rdaPageId") + (urlInfo.get("anchor") ? urlInfo.get("anchor") + field : "");
+    return "https://www.kiwi.fi/pages/viewpage.action?pageId=" + urlInfo.rdaPageId + (urlInfo.anchor ? urlInfo.anchor + field : "");
   }
 }
 
@@ -41,14 +39,23 @@ function getUrlData() {
 function processInput(data) {
   if (containsNumbers(data.value) && !containsAlphabeticalCharacters(data.value)) {
     if (data.ohjeet) {
+      const urlData = getUrlData();
       if (data.selection === "MARC 21") {
-        redirect(parseMARC21Url(data.value, "marc21", getUrlData()));
+        splitInput(data.value)
+          .map(field => parseMARC21Url(field, "marc21", urlData))
+          .map(redirect);
       } else if (data.selection === "MARC 21 Full (LOC)") {
-        redirect(parseLOCMARCUrl(data.value));
+        splitInput(data.value)
+          .map(field => parseLOCMARCUrl(field))
+          .map(redirect);
       } else if (data.selection === "MARC 21 sovellusohje (RDA)") {
-        redirect(parseMARC21Url(data.value, "sovellusohjerda", getUrlData()));
+        splitInput(data.value)
+          .map(field => parseMARC21Url(field, "sovellusohjerda", urlData))
+          .map(redirect);
       } else if (data.selection === "MARC 21 sovellusohje (ISBD)") {
-        redirect(parseMARC21Url(data.value, "sovellusohjeisbd", getUrlData()));
+        splitInput(data.value)
+          .map(field => parseMARC21Url(field, "sovellusohjeisbd", urlData))
+          .map(redirect);
       }
     } else {
       if (data.selection === "Melinda") {
@@ -57,7 +64,7 @@ function processInput(data) {
         parseFennicaURL(data.value).map(redirect);
 	  } else {
         parseFinnaURL(data.selection, data.value).map(redirect);
-	  }
+      }
     }
   } else {
     unrecognizedValue();
