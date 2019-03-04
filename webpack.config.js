@@ -1,24 +1,26 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const outputDir = path.join(__dirname, 'build/');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: './src/app.js',
+  entry: './src/Index.bs.js',
+  mode: isProd ? 'production' : 'development',
   output: {
-    filename: './build/query.js'
+    path: outputDir,
+    filename: 'Index.js'
   },
-  watch: true,
   plugins: [
-    new UglifyJsPlugin({
-      sourceMap: true
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: false
     })
   ],
-  module: {
-    loaders: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: { presets: [ 'es2015', 'react' ] }
-      }
-    ]
+  devServer: {
+    compress: true,
+    contentBase: outputDir,
+    port: process.env.PORT || 8000,
+    historyApiFallback: true
   }
 };
